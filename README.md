@@ -42,50 +42,66 @@ The built files will be in the `dist` folder.
 
 ## Deployment to Vercel
 
-### Option 1: Deploy with Vercel CLI (Recommended)
+### Step-by-Step Guide
 
-1. **Install Vercel CLI globally:**
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Deploy:**
-   ```bash
-   vercel
-   ```
-
-3. **Follow the prompts:**
-   - Login to your Vercel account
-   - Confirm project settings
-   - Deploy!
-
-### Option 2: Deploy via GitHub
-
-1. **Push your code to GitHub:**
-   ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
-   git remote add origin <your-github-repo-url>
-   git push -u origin main
-   ```
-
-2. **Connect to Vercel:**
-   - Go to [vercel.com](https://vercel.com)
-   - Click "New Project"
-   - Import your GitHub repository
-   - Vercel will auto-detect Vite settings
-   - Click "Deploy"
-
-### Option 3: One-Command Deploy
-
-If you have Vercel CLI installed and are logged in:
+#### 1. Initialize Git (if not already done)
 
 ```bash
-vercel --prod
+git init
+git add .
+git commit -m "Initial commit"
 ```
 
-This will deploy directly to production.
+#### 2. Push to GitHub
+
+**Create a new repository on GitHub:**
+- Go to [github.com](https://github.com) and create a new repository
+- Don't initialize it with README, .gitignore, or license (we already have these)
+
+**Push your code:**
+```bash
+git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+git branch -M main
+git push -u origin main
+```
+
+#### 3. Deploy to Vercel
+
+**Option A: Via Vercel Dashboard (Easiest)**
+1. Go to [vercel.com](https://vercel.com) and sign in (use GitHub to connect)
+2. Click **"Add New..."** → **"Project"**
+3. Import your GitHub repository
+4. Vercel will auto-detect settings:
+   - **Framework Preset:** Vite
+   - **Build Command:** `npm run build` (auto-detected)
+   - **Output Directory:** `dist` (auto-detected)
+   - **Install Command:** `npm install` (auto-detected)
+5. Click **"Deploy"**
+6. Wait 1-2 minutes for deployment
+7. Your app will be live at `https://your-app-name.vercel.app`
+
+**Option B: Via Vercel CLI**
+```bash
+npm install -g vercel
+vercel login
+vercel
+vercel --prod  # Deploy to production
+```
+
+### Vercel Settings (Auto-detected, but verify)
+
+- **Framework Preset:** Vite
+- **Build Command:** `npm run build`
+- **Output Directory:** `dist`
+- **Install Command:** `npm install`
+- **Node.js Version:** 18.x or higher (auto-selected)
+
+### After Deployment
+
+- Your site will be live immediately
+- Every push to `main` branch will auto-deploy
+- You'll get a custom URL: `https://your-app-name.vercel.app`
+- You can add a custom domain in Vercel dashboard under "Settings" → "Domains"
 
 ## Project Structure
 
